@@ -1,0 +1,33 @@
+# Compatibility constraints for the Isaac Sim 5.1 / Isaac Lab 2.3 stack.
+#
+# Isaac Sim itself strictly pins packaging. Several unbounded Isaac Lab and
+# HoloSoma utility dependencies released after 2025 raised their minimums, so
+# an unconstrained install is no longer self-consistent.
+packaging==23.0
+typing-extensions==4.16.0
+
+# HoloSoma uses CascadeSubcommandArgs, which is available in the Tyro 1.x line.
+tyro==1.0.15
+typeguard==4.6.0
+
+# Keep the optional notebook stack below its newer packaging/typing floors.
+notebook==7.3.3
+jupyterlab==4.3.6
+jupyter-client==8.6.3
+
+# Isaac Lab only needs ONNX >=1.18; 1.22 requires typing-extensions >=4.15.
+onnx==1.18.0
+
+# Isaac Lab leaves these unbounded; newer 2026 releases conflict with the
+# Isaac Sim 5.1 pins above.
+transformers==4.55.4
+huggingface-hub==0.34.4
+tokenizers==0.21.4
+ipython==8.37.0
+typer==0.16.1
+psutil==5.9.8
+click==8.1.7
+
+# Requests 2.32 warns with the newer 2026 chardet 7.x release pulled by
+# trimesh[easy].
+chardet==5.2.0

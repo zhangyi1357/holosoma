@@ -60,6 +60,11 @@ if [[ ! -f $SENTINEL_FILE ]]; then
   # Then install isaacsim from NVIDIA index only
   pip install "isaacsim[all,extscache]==5.1.0" --extra-index-url https://pypi.nvidia.com
 
+  # Apply compatibility pins only after Isaac Sim is installed. HoloSoma uses
+  # Tyro 1.x, which needs a newer typing-extensions than Isaac Sim's overly
+  # strict metadata pin; the runtime remains API-compatible and is smoke-tested.
+  export PIP_CONSTRAINT=${SCRIPT_DIR}/isaacsim-5.1-constraints.txt
+
   if [[ ! -d $WORKSPACE_DIR/IsaacLab ]]; then
     git clone https://github.com/isaac-sim/IsaacLab.git --branch v2.3.0 $WORKSPACE_DIR/IsaacLab
   fi
