@@ -104,6 +104,7 @@ source-include = [
     "holosoma/**/*.yaml",
     "holosoma/**/*.npz",
     "holosoma/**/*.obj",
+    "holosoma/**/*.txt",
 ]
 
 [tool.pytest.ini_options]

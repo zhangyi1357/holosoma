@@ -650,7 +650,14 @@ class FastSACAgent(BaseAlgo):
     def learn(self) -> None:
         args = self.config
         device = self.device
-        if args.compile:
+        # PyTorch's CUDA Inductor backend requires Triton.  Official Windows
+        # wheels do not currently ship a working Triton runtime, so defer to
+        # eager mode there instead of failing on the first policy call.
+        compile_enabled = args.compile and os.name != "nt"
+        if args.compile and not compile_enabled:
+            logger.warning("FastSAC torch.compile is unavailable on Windows; using eager CUDA mode.")
+
+        if compile_enabled:
             update_main = torch.compile(self._update_main)
             update_pol = torch.compile(self._update_pol)
             policy = torch.compile(self.policy)

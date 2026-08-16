@@ -5,6 +5,16 @@ THIRD-PARTY SOFTWARE NOTICES AND LICENSES
 This project uses the following third-party software.
 
 ========================================================================
+Agibot A3 T3D0 Robot Model
+Original Source: https://github.com/AgibotTech/A3-A3U-robot-model
+========================================================================
+The A3 T3D0 URDF and mesh assets bundled under
+src/holosoma/holosoma/data/robots/a3_t3d0 are licensed under the Mulan
+Permissive Software License, Version 2. A copy of that license is provided in
+that asset directory as LICENSE.txt. The training URDF is modified to fix the
+two neck joints.
+
+========================================================================
 Isaac Sim
 Original Source: https://github.com/isaac-sim/IsaacSim/
 ========================================================================
