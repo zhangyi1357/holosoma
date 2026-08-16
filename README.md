@@ -6,7 +6,7 @@ Holosoma (Greek: "whole-body") is a comprehensive humanoid robotics framework fo
 
 - **Multi-simulator support**: IsaacGym, IsaacSim, MuJoCo Warp (MJWarp), and MuJoCo (inference only)
 - **Multiple RL algorithms**: PPO and FastSAC
-- **Robot support**: Unitree G1 and Booster T1 humanoids
+- **Robot support**: Unitree G1, Booster T1, and Agibot A3 T3D0 (Isaac Sim WBT)
 - **Task types**: Locomotion (velocity tracking) and whole-body tracking
 - **Sim-to-sim and sim-to-real deployment**: Shared inference pipeline across simulation and real robot control
 - **Motion retargeting**: Convert human motion capture data to robot motions while preserving interactions with objects and terrain
@@ -37,8 +37,7 @@ Choose the appropriate setup script based on your use case:
 # For IsaacGym training
 bash scripts/setup_isaacgym.sh
 
-# For IsaacSim training
-# Requires Ubuntu 22.04 or later due to IsaacSim dependencies
+# For IsaacSim training on Ubuntu 22.04 or later
 bash scripts/setup_isaacsim.sh
 
 # For MJWarp training and MuJoCo simulation (inference) — conda
@@ -70,6 +69,22 @@ python src/holosoma/holosoma/train_agent.py \
 > **Note:** For headless servers, see the [training guide](src/holosoma/README.md#video-recording) for video recording configuration.
 
 See the [Training Guide](src/holosoma/README.md) for more examples and configuration options.
+
+Train the 29-DoF A3 T3D0 whole-body tracker with FastSAC on Isaac Sim:
+
+```bash
+source scripts/source_isaacsim_setup.sh
+python src/holosoma/holosoma/train_agent.py \
+    exp:a3-t3d0-wbt-fast-sac \
+    logger:disabled \
+    --training.seed 1
+```
+
+TensorBoard event files are written under `logs/A3WholeBodyTracking` even when
+W&B is disabled. The two neck joints are fixed. See the
+[A3 T3D0 WBT guide](docs/a3-t3d0-wbt.md) for motion preparation and scope.
+On the verified Windows install, run
+`.\demo_scripts\demo_a3_t3d0_wbt_fast_sac.ps1 -NumEnvs 1024 -Seed 1` from PowerShell.
 
 ### Quick Demo
 

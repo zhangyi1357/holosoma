@@ -6,7 +6,7 @@ Core training framework for humanoid robot reinforcement learning with support f
 |-------------|----------------------|
 | **Simulators** | IsaacGym, IsaacSim, MJWarp (training) \| Mujoco (evaluation) |
 | **Algorithms** | PPO, FastSAC |
-| **Robots** | Unitree G1, Booster T1 |
+| **Robots** | Unitree G1, Booster T1, Agibot A3 T3D0 (Isaac Sim WBT) |
 
 ## Training
 
@@ -84,7 +84,7 @@ python src/holosoma/holosoma/train_agent.py \
 
 Train robots to track full-body motion sequences.
 
-**Note**: Currently only supported for Unitree G1 / IsaacSim.
+**Note**: WBT is supported for Unitree G1 and Agibot A3 T3D0 on IsaacSim. A3 support is FastSAC-only and fixes both neck joints, leaving 29 controlled DoFs.
 
 ```bash
 # G1 with FastSAC
@@ -98,6 +98,13 @@ source scripts/source_isaacsim_setup.sh
 python src/holosoma/holosoma/train_agent.py \
     exp:g1-29dof-wbt \
     logger:wandb
+
+# A3 T3D0 (29 DoF) with FastSAC
+source scripts/source_isaacsim_setup.sh
+python src/holosoma/holosoma/train_agent.py \
+    exp:a3-t3d0-wbt-fast-sac \
+    logger:disabled \
+    --training.seed 1
 
 # Custom motion file
 source scripts/source_isaacsim_setup.sh
