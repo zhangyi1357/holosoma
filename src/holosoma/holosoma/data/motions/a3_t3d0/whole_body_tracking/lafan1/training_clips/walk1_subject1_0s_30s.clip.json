@@ -1,13 +1,15 @@
 {
   "source": "walk1_subject1.npz",
   "output": "walk1_subject1_0s_30s.npz",
-  "fps": 30.0,
+  "source_fps": 30.0,
+  "fps": 50.0,
   "source_frames": 7840,
   "frame_range": [
     0,
     900
   ],
-  "frames": 900,
+  "source_clip_frames": 900,
+  "frames": 1500,
   "start_seconds": 0.0,
   "duration_seconds": 30.0
 }
